@@ -1,0 +1,176 @@
+@font-face {
+  font-family: 'Pixelify Sans';
+  src: local('Pixelify Sans'), url('./assets/fonts/PixelifySans-VariableFont_wght.ttf');
+}
+
+body {
+  background-color: #FBE4D5;
+  font-family: 'Pixelify Sans', sans-serif;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  margin: 0;
+  overflow: hidden;
+}
+
+.app-container {
+  display: flex;
+  width: 100%;
+  height: 100%;
+}
+
+.main-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 70%;
+  position: relative;
+}
+
+.notes-container {
+  background-color: #FFEB99;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0px 12px 30px rgba(0, 0, 0, 0.2);
+  width: 90%;
+  max-width: 500px;
+  margin-top: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.notes-container h2 {
+  color: #D46F6F;
+  font-size: 1.5rem;
+  margin-bottom: 10px;
+}
+
+.notes-container textarea {
+  width: 100%;
+  height: 150px;
+  padding: 10px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+  font-family: 'Pixelify Sans', sans-serif;
+  font-size: 1rem;
+  resize: none;
+}
+
+.notes-container .button {
+  margin-top: 10px;
+}
+
+.posted-notes {
+  width: 100%;
+  margin-top: 20px;
+}
+
+.note {
+  background-color: #FFEB99;
+  padding: 10px;
+  border-radius: 10px;
+  box-shadow: 0px 12px 30px rgba(0, 0, 0, 0.2);
+  margin-bottom: 10px;
+  font-family: 'Pixelify Sans', sans-serif;
+  word-wrap: break-word;
+  white-space: pre-wrap;
+}
+
+.character-container {
+  width: 30%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+}
+
+.character {
+  width: 50px;
+  height: 50px;
+  background-color: #FF69B4;
+  background-image: url('./assets/images/character.png');
+  /* Add pixel art character image */
+  background-size: cover;
+  animation: moveCharacter 5s linear infinite;
+}
+
+@keyframes moveCharacter {
+  0% {
+    transform: translateX(0);
+  }
+
+  100% {
+    transform: translateX(100%);
+  }
+}
+
+.timer-container {
+  background-color: #FFEB99;
+  padding: 40px 50px;
+  border-radius: 15px;
+  box-shadow: 0px 8px 20px rgba(0, 0, 0, 0.2);
+  width: 90%;
+  max-width: 500px;
+  background-image: url('./assets/images/sky.png');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  text-align: center;
+}
+
+h1 {
+  color: #D46F6F;
+  font-size: 2.5rem;
+  margin-bottom: 20px;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+.timer {
+  font-size: 4rem;
+  margin-bottom: 30px;
+  color: #FF6347;
+  font-weight: bold;
+}
+
+.button {
+  background-color: #FF69B4;
+  color: white;
+  padding: 15px 30px;
+  margin-right: 20px;
+  margin-top: 20px;
+  font-family: 'Pixelify Sans', sans-serif;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  font-size: 1.2rem;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.button:hover {
+  background-color: #FF1493;
+  transform: scale(1.1);
+}
+
+.button:active {
+  transform: scale(1);
+}
+
+@media (max-width: 768px) {
+  .timer-container {
+    padding: 30px 40px;
+  }
+
+  h1 {
+    font-size: 2rem;
+  }
+
+  .timer {
+    font-size: 3rem;
+  }
+
+  .button {
+    font-size: 1rem;
+  }
+}
