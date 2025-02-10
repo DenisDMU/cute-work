@@ -1,8 +1,34 @@
-# React + Vite
+# Cute Work
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+This project is a minimal setup to get a React application running with Vite.
 
-Currently, two official plugins are available:
+I got bored on a cold and dull Saturday night. So, what's better than coding for fun? I had never tried Vite and wanted to see if it really was as fast as the name suggests. And yes, it is.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+I'm pretty happy with what I've accomplished. I wanted to display my skills with React, Vite, and JavaScript, focusing on DOM manipulation, event handling, and some simplistic UI design. The project includes custom color and font choices, features to select the duration, sound effects for start, pause, and timer reset, the ability to track break times in a sidebar, and the option to add notes if needed.
+
+## Features
+
+- **Pomodoro Timer**: Helps you manage work and break periods effectively.
+- **Notes**: Allows you to jot down quick notes.
+- **Jokes**: Provides random jokes to lighten up your mood.
+- **Drawer**: A sidebar to keep track of pauses.
+
+## Technologies Used
+
+- **React**: A JavaScript library for building user interfaces.
+- **Vite**: A fast build tool and development server.
+- **JavaScript**: The primary programming language used.
+
+## Usage
+
+### Pomodoro Timer
+The Pomodoro Timer helps you manage your work and break intervals. Start the timer to begin a work session, and take breaks as scheduled. You can choose your desired duration, and the app will play sounds at the start, during pauses, and when the timer resets.
+
+### Notes
+Use the Notes section to write down quick notes that you want to remember. You can add new notes and see the time they were created.
+
+### Jokes
+Get a random joke by visiting the Jokes section. Click the refresh button to get a new joke.
+
+### Drawer
+The Drawer keeps track of your pause entries. Open it to see how many breaks you've taken and their details.
