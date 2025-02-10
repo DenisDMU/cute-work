@@ -35,41 +35,40 @@ const Pomodoro = () => {
         startAudio.currentTime = 0;
     }, [jobsDoneAudio, zawarudoAudio, rewindAudio, startAudio]);
 
-    useEffect(() => {
-        let interval;
-        if (isRunning) {
-            interval = setInterval(() => {
-                setSeconds((prev) => {
-                    if (prev <= 0) {
-                        clearInterval(interval);
-                        stopAllAudio();
+ useEffect(() => {
+    let interval;
+    if (isRunning) {
+        interval = setInterval(() => {
+            setSeconds((prev) => {
+                if (prev <= 0) {
+                    clearInterval(interval);
+                    stopAllAudio();
 
-                        // À la fin du temps de travail
-                        if (!isBreak) {
-                            jobsDoneAudio.play();
-                            setShowPopup(true); // Affiche le popup
-                            setSeconds(300); // 5 minutes de pause
-                            setIsBreak(true);
-                        } else {
-                            // À la fin de la pause : pas de popup
-                            setShowPopup(false);
-                            setSeconds(duration * 60);
-                            setIsBreak(false);
-                        }
-                        setElapsedTime(0); // Réinitialiser le temps de travail
-                        return 0;
-                    }
-                    // Incrémente le temps travaillé seulement si on est en mode travail
+                    // À la fin du temps de travail
                     if (!isBreak) {
-                        setElapsedTime((old) => old + 1);
+                        jobsDoneAudio.play();
+                        setShowPopup(true); // Affiche le popup
+                        setSeconds(300); // 5 minutes de pause
+                        setIsBreak(true);
+                    } else {
+                        // À la fin de la pause : pas de popup
+                        setShowPopup(false);
+                        setSeconds(duration * 60);
+                        setIsBreak(false);
                     }
-                    return prev - 1;
-                });
-            }, 1000);
-        }
-        return () => clearInterval(interval);
-    }, [isRunning, isBreak, stopAllAudio, jobsDoneAudio, duration]);
-
+                    setElapsedTime(0); // Réinitialiser le temps de travail
+                    return 0;
+                }
+                // Incrémente le temps travaillé seulement si on est en mode travail
+                if (!isBreak) {
+                    setElapsedTime((old) => old + 1);
+                }
+                return prev - 1;
+            });
+        }, 1000);
+    }
+    return () => clearInterval(interval);
+}, [isRunning, isBreak, stopAllAudio, jobsDoneAudio, duration]);
     const startTimer = () => {
         setIsRunning(true);
         setIsPaused(false);
@@ -79,20 +78,23 @@ const Pomodoro = () => {
         setElapsedTime(0);
     };
 
-    const stopTimer = () => {
-        setIsRunning(false);
-        setIsPaused(true);
-        setBackgroundImage(pauseImage);
-        stopAllAudio();
-        zawarudoAudio.play();
+   const stopTimer = () => {
+    setIsRunning(false);
+    setIsPaused(true);
+    setBackgroundImage(pauseImage);
+    stopAllAudio();
+    zawarudoAudio.play();
 
-        // Indique le temps travaillé avant la pause
-        const mins = Math.floor(elapsedTime / 60);
-        const secs = elapsedTime % 60;
-        console.log(`You worked for ${mins} min(s) and ${secs} sec(s) before pausing.`);
-        
-        setElapsedTime(0);
-    };
+    // Indique le temps travaillé avant la pause
+    const mins = Math.floor(elapsedTime / 60);
+    const secs = elapsedTime % 60;
+    console.log(`You worked for ${mins} min(s) and ${secs} sec(s) before pausing.`);
+    
+    // Add pause entry
+    addPauseEntry({ mins, secs });
+
+    setElapsedTime(0);
+};
 
     const resetTimer = () => {
         setIsRunning(false);
