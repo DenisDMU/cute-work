@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 
 const Pomodoro = () => {
-	const [seconds, setSeconds] = useState(1500); // 25 minutes en secondes
+	const [seconds, setSeconds] = useState(1500); // 25 minutes in sec
 	const [isRunning, setIsRunning] = useState(false);
 	const [isBreak, setIsBreak] = useState(false);
 

@@ -1,5 +1,5 @@
 import PropTypes from 'prop-types';
-import githubIcon from '../assets/images/github.png'; // Assurez-vous que le chemin est correct
+import githubIcon from '../assets/images/github.png';
 
 const Drawer = ({ open, onClose, pauseEntries }) => {
     return (
@@ -14,8 +14,9 @@ const Drawer = ({ open, onClose, pauseEntries }) => {
             <div className="drawer-footer">
                 <a href="https://github.com/denisDMU" target="_blank" rel="noopener noreferrer">
                     <img src={githubIcon} alt="GitHub" className="github-icon" />
-                    DenisDMU
+                  
                 </a>
+                  DenisDMU
             </div>
         </div>
     );

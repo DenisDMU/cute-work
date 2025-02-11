@@ -27,12 +27,13 @@ const App = () => {
     };
 
     useEffect(() => {
-        const intervals = [20, 15, 10, 5];
+        const intervals = [20, 15, 10, 5, 1];
         const messages = [
             "That's a good start",
             "Keep going",
             "Almost there",
             "You got it!",
+            "Last minute, the best one!",
         ];
 
         const timers = intervals.map((interval, index) => {
@@ -58,7 +59,7 @@ const App = () => {
     return (
         <>
             <h1 className="big-title">
-                Welcome <span className="highlight">happy to see you!</span>
+               Hey !<span className="highlight">Ready to work ?</span>
             </h1>
             <div className="app-container">
                 <div className="menu-burger" onClick={() => setDrawerOpen(true)}>
