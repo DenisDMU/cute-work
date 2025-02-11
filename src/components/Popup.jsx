@@ -11,7 +11,7 @@ const Popup = ({ show, onClose }) => {
             <Confetti />
             <div className="popup-content" style={{ backgroundImage: `url(${skyImage})` }}>
                 <h2>Good job!</h2>
-                <p className='text-popup'>You earned that 5 (Five) min break ! 🐰</p>
+                <p className='text-popup'>You earned that <span className='pop-min'>5 (Five) min</span> break ! 🐰</p>
                 <button className="button" onClick={onClose}>Close</button>
             </div>
         </div>

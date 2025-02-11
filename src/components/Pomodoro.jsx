@@ -9,16 +9,16 @@ import pauseImage from "../assets/images/pause.jpg";
 import oceanImage from "../assets/images/ocean.png";
 import Popup from "./Popup";
 
-const Pomodoro = ({ addPauseEntry }) => {
+const Pomodoro = ({ addPauseEntry, setIsTimerRunning, setIsBreak }) => {
     const [seconds, setSeconds] = useState(1500); // 25 minutes
     const [isRunning, setIsRunning] = useState(false);
-    const [isBreak, setIsBreak] = useState(false);
+    const [isBreak, setIsBreakState] = useState(false);
     const [isPaused, setIsPaused] = useState(false);
     const [backgroundImage, setBackgroundImage] = useState(skyImage);
     const [showPopup, setShowPopup] = useState(false);
     const [duration, setDuration] = useState(25); // Duration in minutes
     const [durationSet, setDurationSet] = useState(false);
-    const [elapsedTime, setElapsedTime] = useState(0); // Pour mesurer le temps travaillé
+    const [elapsedTime, setElapsedTime] = useState(0); // to keep track of time worked
 
     const jobsDoneAudio = useMemo(() => new Audio(jobsDoneSound), []);
     const zawarudoAudio = useMemo(() => new Audio(zawarudoSound), []);
@@ -46,15 +46,17 @@ const Pomodoro = ({ addPauseEntry }) => {
                         stopAllAudio();
 
                         if (!isBreak) {
-                            // End of working time
+                            // End work time
                             jobsDoneAudio.play();
-                            setShowPopup(true); // Display the popup
+                            setShowPopup(true); // Display popup
                             setSeconds(300); // 5 minutes break
+                            setIsBreakState(true);
                             setIsBreak(true);
                         } else {
                             // Fin de la pause
-                            setShowPopup(false); // Hide the popup
+                            setShowPopup(false); // hide popup
                             setSeconds(duration * 60);
+                            setIsBreakState(false);
                             setIsBreak(false);
                         }
                         setElapsedTime(0); // Reset elapsed time
@@ -68,7 +70,7 @@ const Pomodoro = ({ addPauseEntry }) => {
             }, 1000);
         }
         return () => clearInterval(interval);
-    }, [isRunning, isBreak, stopAllAudio, jobsDoneAudio, duration]);
+    }, [isRunning, isBreak, stopAllAudio, jobsDoneAudio, duration, setIsBreak]);
 
     const startTimer = () => {
         setIsRunning(true);
@@ -77,6 +79,7 @@ const Pomodoro = ({ addPauseEntry }) => {
         stopAllAudio();
         startAudio.play();
         setElapsedTime(0);
+        setIsTimerRunning(true);
     };
 
     const stopTimer = () => {
@@ -85,8 +88,9 @@ const Pomodoro = ({ addPauseEntry }) => {
         setBackgroundImage(pauseImage);
         stopAllAudio();
         zawarudoAudio.play();
+        setIsTimerRunning(false);
 
-        // Show a message with the time worked
+        // Indique le temps travaillé avant la pause
         const mins = Math.floor(elapsedTime / 60);
         const secs = elapsedTime % 60;
         addPauseEntry(`You worked for ${mins} minute${mins !== 1 ? 's' : ''} and ${secs} second${secs !== 1 ? 's' : ''}`);
@@ -97,7 +101,7 @@ const Pomodoro = ({ addPauseEntry }) => {
     const resetTimer = () => {
         setIsRunning(false);
         setIsPaused(false);
-        setIsBreak(false);
+        setIsBreakState(false);
         setSeconds(duration * 60);
         setBackgroundImage(skyImage);
         stopAllAudio();
@@ -105,6 +109,8 @@ const Pomodoro = ({ addPauseEntry }) => {
         setDurationSet(false);
         setElapsedTime(0);
         setShowPopup(false);
+        setIsTimerRunning(false);
+        setIsBreak(false);
     };
 
     const handleDurationChange = (e) => {
@@ -152,7 +158,7 @@ const Pomodoro = ({ addPauseEntry }) => {
             </div>
             {!durationSet && (
                 <div className="duration-container">
-                    <label htmlFor="duration">Choose minutes :</label>
+                    <label htmlFor="duration" className="set-timer-lab">Set your own time</label>
                     <input
                         type="number"
                         id="duration"
@@ -173,6 +179,8 @@ const Pomodoro = ({ addPauseEntry }) => {
 
 Pomodoro.propTypes = {
     addPauseEntry: PropTypes.func.isRequired,
+    setIsTimerRunning: PropTypes.func.isRequired,
+    setIsBreak: PropTypes.func.isRequired,
 };
 
 export default Pomodoro;

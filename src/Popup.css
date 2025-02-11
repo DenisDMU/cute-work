@@ -22,6 +22,10 @@
     background-repeat: no-repeat;
 }
 
+.pop-min{
+    font-family: 'Chakra Petch', sans-serif;
+}
+
 .popup-content h2 {
     color: #D46F6F;
     font-size: 2rem;

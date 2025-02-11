@@ -3,6 +3,7 @@ import Pomodoro from './components/Pomodoro.jsx';
 import Notes from './components/Notes.jsx';
 import Joke from './components/Joke.jsx';
 import Drawer from './components/Drawer.jsx';
+import Task from './components/Task.jsx';
 import menuIcon from './assets/images/menu.png';
 import './App.css';
 
@@ -11,6 +12,10 @@ const App = () => {
     const [notifications, setNotifications] = useState([]);
     const [drawerOpen, setDrawerOpen] = useState(false);
     const [pauseEntries, setPauseEntries] = useState([]);
+    const [tasks, setTasks] = useState([]);
+    const [taskInput, setTaskInput] = useState("");
+    const [isTimerRunning, setIsTimerRunning] = useState(false);
+    const [isBreak, setIsBreak] = useState(false);
 
     const addNote = (note) => {
         setNotes((prevNotes) => {
@@ -24,6 +29,22 @@ const App = () => {
 
     const addPauseEntry = (entry) => {
         setPauseEntries((prevEntries) => [entry, ...prevEntries]);
+    };
+
+    const handleTaskInputChange = (e) => {
+        setTaskInput(e.target.value);
+    };
+
+    const handleTaskSubmit = (e) => {
+        e.preventDefault();
+        if (taskInput.trim() && tasks.length < 10) {
+            setTasks([...tasks, { id: Date.now(), text: taskInput, completed: false }]);
+            setTaskInput("");
+        }
+    };
+
+    const handleTaskComplete = (taskId) => {
+        setTasks(tasks.map(task => task.id === taskId ? { ...task, completed: !task.completed } : task));
     };
 
     useEffect(() => {
@@ -58,9 +79,11 @@ const App = () => {
 
     return (
         <>
-            <h1 className="big-title">
-               Hey !<span className="highlight">Ready to work ?</span>
-            </h1>
+            {tasks.length === 0 && (
+                <h1 className="big-title">
+                    Hey !<span className="highlight">Ready to work ?</span>
+                </h1>
+            )}
             <div className="app-container">
                 <div className="menu-burger" onClick={() => setDrawerOpen(true)}>
                     <img src={menuIcon} alt="Menu" className='menu-drawer'/>
@@ -70,15 +93,34 @@ const App = () => {
                     onClose={() => setDrawerOpen(false)}
                     pauseEntries={pauseEntries}
                 />
+                {tasks.length < 5 && (
+                    <form onSubmit={handleTaskSubmit} className="task-input-form">
+                        <input
+                            type="text"
+                            value={taskInput}
+                            onChange={handleTaskInputChange}
+                            placeholder="Enter your task"
+                            className="task-input"
+                            maxLength={40}
+                        />
+                    </form>
+                )}
+                {tasks.length > 0 && (
+                    <div className="tasks-container">
+                        {tasks.map(task => (
+                            <Task key={task.id} task={task} onComplete={handleTaskComplete} />
+                        ))}
+                    </div>
+                )}
                 <div className="main-sections">
                     <div className="joke-section">
-                        <Joke />
+                        <Joke isBreak={isBreak} isTimerRunning={isTimerRunning} />
                     </div>
                     <div className="timer-section">
-                        <Pomodoro addPauseEntry={addPauseEntry} />
+                        <Pomodoro addPauseEntry={addPauseEntry} setIsTimerRunning={setIsTimerRunning} setIsBreak={setIsBreak} />
                     </div>
                     <div className="notes-section">
-                        <Notes addNote={addNote} />
+                        <Notes addNote={addNote} isTimerRunning={isTimerRunning} />
                     </div>
                 </div>
                 <div className="posted-notes">
