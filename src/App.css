@@ -495,7 +495,7 @@ input::-webkit-inner-spin-button {
 }
 
 @media (max-width: 768px) {
-  .main-sections {
+.main-sections {
     flex-direction: column;
     align-items: center;
   }
@@ -527,6 +527,9 @@ input::-webkit-inner-spin-button {
 
   .posted-notes {
     grid-template-columns: repeat(2, 1fr);
+    width: 100%;
+    position: static;
+    margin-top: 20px;
   }
 
   .note {
@@ -537,38 +540,41 @@ input::-webkit-inner-spin-button {
 /* For tablets in portrait mode (768px to 900px) */
 @media (max-width: 900px) and (min-width: 768px) {
   .main-sections {
-    flex-direction: column;
-    align-items: center;
-  }
-
-  .joke-section,
-  .timer-section,
-  .notes-section {
-    width: 80%;
-    margin: 10px 0;
-  }
-
-  .timer-container {
-    padding: 20px;
-    max-width: 100%;
-    height: auto;
-  }
-
-  h1 {
-    font-size: 2.5rem;
-  }
-
-  .timer {
-    font-size: 4rem;
-  }
-
-  .button {
-    font-size: 1.2rem;
-  }
-
-  .posted-notes {
-    grid-template-columns: repeat(3, 1fr);
-  }
+      flex-direction: column;
+      align-items: center;
+    }
+  
+    .joke-section,
+    .timer-section,
+    .notes-section {
+      width: 80%;
+      margin: 10px 0;
+    }
+  
+    .timer-container {
+      padding: 20px;
+      max-width: 100%;
+      height: auto;
+    }
+  
+    h1 {
+      font-size: 2.5rem;
+    }
+  
+    .timer {
+      font-size: 4rem;
+    }
+  
+    .button {
+      font-size: 1.2rem;
+    }
+  
+    .posted-notes {
+      grid-template-columns: repeat(3, 1fr);
+      width: 100%;
+      position: static;
+      margin-top: 20px;
+    }
 
   .note {
     width: 100%;
@@ -579,79 +585,40 @@ input::-webkit-inner-spin-button {
 @media (max-width: 1024px) and (min-width: 900px) {
   .main-sections {
     flex-direction: column;
-    align-items: center;
-  }
-
-  .joke-section,
-  .timer-section,
-  .notes-section {
-    width: 70%;
-    margin: 10px 0;
-  }
-
-  .timer-container {
-    padding: 20px;
-    max-width: 100%;
-    height: auto;
-  }
-
-  h1 {
-    font-size: 2.5rem;
-  }
-
-  .timer {
-    font-size: 4rem;
-  }
-
-  .button {
-    font-size: 1.2rem;
-  }
-
-  .posted-notes {
-    grid-template-columns: repeat(3, 1fr);
-  }
-
-  .note {
-    width: 100%;
-  }
-}
-
-/* For desktops and laptops (1024px to 1200px) */
-@media (max-width: 1200px) and (min-width: 1024px) {
-  .main-sections {
-    flex-direction: row;
-    align-items: center;
-  }
-
-  .joke-section,
-  .timer-section,
-  .notes-section {
-    width: 30%;
-    margin: 10px 0;
-  }
-
-  .timer-container {
-    padding: 20px;
-    max-width: 100%;
-    height: auto;
-  }
-
-  h1 {
-    font-size: 3rem;
-  }
-
-  .timer {
-    font-size: 5rem;
-  }
-
-  .button {
-    font-size: 1.2rem;
-  }
-
-  .posted-notes {
-    grid-template-columns: repeat(4, 1fr);
-  }
-
+      align-items: center;
+    }
+    
+    .joke-section,
+    .timer-section,
+    .notes-section {
+      width: 70%;
+      margin: 10px 0;
+    }
+    
+    .timer-container {
+      padding: 20px;
+      max-width: 100%;
+      height: auto;
+    }
+    
+    h1 {
+      font-size: 2.5rem;
+    }
+    
+    .timer {
+      font-size: 4rem;
+    }
+    
+    .button {
+      font-size: 1.2rem;
+    }
+    
+    .posted-notes {
+      grid-template-columns: repeat(3, 1fr);
+      width: 100%;
+      position: static;
+      margin-top: 20px;
+    }
   .note {
     width: 100%;
   }

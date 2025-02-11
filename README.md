@@ -12,6 +12,7 @@ I'm pretty happy with what I've accomplished. I wanted to display my skills with
 - **Notes**: Allows you to jot down quick notes.
 - **Jokes**: Provides random jokes to lighten up your mood. (Thanks to <https://icanhazdadjoke.com/api>)
 - **Drawer**: A sidebar to keep track of pauses.
+- **Tasks**: Add the tasks you've in your mind.
 
 ## Technologies Used
 
@@ -37,3 +38,7 @@ I use the <https://icanhazdadjoke.com/api> to get those juicy and funny dad joke
 ### Drawer
 
 The Drawer keeps track of your pause entries. Open it to see how many breaks you've taken and their details.
+
+### Tasks
+
+You can add tasks, to focus on, and follow step by step what you want to achieve during the session.
